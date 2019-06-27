@@ -1,46 +1,46 @@
-#include <SFML/Graphics.hpp>
-
-#include "enemigo.h"
+#pragma once 
+#include "SFML/Graphics.hpp"
+#include <iostream>
 
 using namespace sf;
+
 using namespace std;
 
-class Juego{	
-	public:
-		Juego(Vector2f resolucion, string titulo);
-		void game_loop();//creamos un loop para mantener abierta la instancia del juego
-		void cargar_graficos();//para cargar los sprites
-		void procesar_eventos();
-		void chequear_enemigos();
-	private:
+class juego
+{
+    public:
+        juego(Vector2i dimension,std::string titulo);
+        void dibujar();
+        void gameloop();
+        void procesar_eventos();
+        //void procesar_mouse();
+        //void procesar_colisiones();
+        ~juego();
+    private:
+        RenderWindow * ventana1;//para crear la ventana
+        int fps;
+        Texture * textura1;//textura del fonde CEMENTERIO.JPG
+        Sprite * sprite1;// el sprite del fodo CEMENTERIO.JPG
+        //Sprite * sprite2;
 
-		RenderWindow *ventana1;
+        Texture * textura2;//textura del PERSONAJE
+        Sprite *sprite2;//sprite del PESONAJE
 
-		int vidas;
-		
-		//Sprites
-		
+        Texture * textura3;//textura de la MANCHA DE SANGRE
+        Sprite * sprite3;//Otro sprite del PERSONAJE(azul)
 
-		Texture txt_fondo;//textura del fondo 
-		Sprite spr_fondo;//sprite del fondo
-		
-		Texture txt_mira;//textura de la mira del arma
+        Texture txt_mira;//textura de la mira del arma
 		Sprite spr_mira;//sprite de la mira del arma
-		
-		Event *evento1;
-		
-		Enemigo *monsters[4];//creamos un arreglo de 4  objetos de clase Enemigo
-		
-		Clock *reloj1;
-		Time  *tiempo1;
-		float tiempo2;
 
-		bool game_over;
-		
-		//Dividir la pantalla en 4;
-		bool slots_monsters[4];
-		
-		int fps;
-	
-		
+        Event * evento1;//para que se den los eventos(para cerrar ventana, para que camine el personaje)
+
+        Vector2i posicion_mouse;//para las coordenadas del mouse
+
+        RectangleShape * caja1;//para crear la figura del rectangulo
+
+        Clock * reloj1;//un reloj
+        Time * tiempo1;//variable tiempo1
+    
+        float tiempo2;//variable tiempo
+        
 };
